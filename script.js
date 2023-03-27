@@ -1,8 +1,7 @@
-const grid = document.getElementById('grid');
+const container = document.querySelector('.container');
 
-// Create 16 x 16 grid cells
-for (let i = 0; i < 16 * 16; i++) {
-  const cell = document.createElement('div');
-  cell.classList.add('cell');
-  grid.appendChild(cell);
+for (let i = 0; i < 256; i++) {
+  const square = document.createElement('div');
+  square.classList.add('square');
+  container.appendChild(square);
 }
