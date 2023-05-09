@@ -6,20 +6,33 @@ for (let i = 0; i <=254; i++) {
   container.appendChild(square);
 }
 
+let isDrawing = false;
 
-document.querySelector('button').addEventListener('click', function() {
-  let userAdjective = prompt("Please provide a number");
-  alert (userAdjective);
+container.addEventListener('mousedown', function(e) {
+  isDrawing = true;
+  paintGrid(e);
 });
 
-function paintGrid(elem, color){    
-  if(elem.buttons == 1){
-      if(elem.target.classList == 'square'){
-          let square = elem.target;    
-          square.style.backgroundColor = color;
-      }  
-  }else{
-      //Exit condition if mouse is not clicked.
-      return;
+container.addEventListener('mousemove', function(e) {
+  if (isDrawing) {
+    paintGrid(e);
+  }
+});
+
+container.addEventListener('mouseup', function(e) {
+  isDrawing = false;
+});
+
+function paintGrid(e){    
+  if(e.target.classList.contains('square')){
+    let square = e.target;    
+    square.style.backgroundColor = 'black';
   }
 }
+
+document.querySelector('button').addEventListener('click', function() {
+  const squares = document.querySelectorAll('.square');
+  squares.forEach(function(square) {
+    square.style.backgroundColor = 'white';
+  });
+});
